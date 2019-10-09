@@ -13,7 +13,7 @@ Progression bar
 
 ###### :white_circle: Add a consensus function which compares all valid chains and selects the longest in the network
 
-###### :white_circle: Make a public list of nodes, so one user doesn't need to register them all manually
+###### :white_circle: Make a public list of nodes, so the user doesn't need to register them all manually
 
 ###### :white_circle: Implement a wallet system
 

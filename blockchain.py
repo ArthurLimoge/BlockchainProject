@@ -85,33 +85,6 @@ class Blockchain:
 
             return True
 
-    def resolve_chain(self):
-        """
-        Consensus algorithm: checks for longer (valid) chains in the network.
-        """
-
-        neighbours = self.nodes
-        new_chain = None
-
-        local_length = len(self.chain)
-
-        for neighbour in neighbours:
-            response = request.get(f'http://{neighbour}/chain')
-
-            if response.status_code == 200:
-                neighbour_chain = response.json()['chain']
-                length = len(neighbour_chain)
-
-                if length > local_length and self.valid_chain(chain):
-                    local_length = length
-                    new_chain = neighbour_chain
-
-        if new_chain:
-            self.chain = new_chain
-            return True
-
-        return False
-
     def register_node(self, id_):
         new_node = Node(id_)
         node_netloc = new_node.return_id

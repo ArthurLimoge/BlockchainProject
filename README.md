@@ -23,14 +23,14 @@ Progression bar
 Installation
 ------
 
-To process the blockchain, you will need Python 3.6 or any higher version, which should include the pip virtual library; as well as a Shell interpreter.
+###### To process the blockchain, you will need Python 3.6 or any higher version, which should include the pip virtual library; as well as a Shell interpreter.
 
-First, need to install the virtual environment pipenv, and the flask module:
+###### First, need to install the virtual environment pipenv, and the flask module:
 
-'$ python -m pip install pipenv'
-'$ python -m pip install flask'
+###### `$ python -m pip install pipenv`
+###### `$ python -m pip install flask`
 
-One can then proceed to run the blockchain (with as many nodes as they want):
+###### One can then proceed to run the blockchain (with as many nodes as they want):
 
-'$python -m pipenv run python blockchain.py -p xxxx' (where 'xxxx' is the port of the node you are instancing).
+###### `$python -m pipenv run python blockchain.py -p xxxx` (where `xxxx` is the port of the node you are instancing).
 

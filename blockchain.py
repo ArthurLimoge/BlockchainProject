@@ -93,7 +93,7 @@ class Blockchain:
 
         for neighbour in neighbours:
             response = requests.get(f'http://{neighbour}/chain')
-            if 1 == 1:
+            if response.status_code == 200:
                 length = response.json()['length']
                 __chain = response.json()['chain']
 
@@ -150,7 +150,7 @@ def mine():
     )
 
     response = blockchain.create_block(new_proof)
-    response['Message'] = 'New block forged'
+    response['message'] = 'New block forged'
     return jsonify(response), 200
 
 
@@ -161,6 +161,24 @@ def chain():
         'length': len(blockchain.chain)
     }
     return jsonify(response), 200
+
+
+@node.route('/chain/see', methods=['POST'])
+def watch():
+    values = request.get_json()
+    address = values['address']
+    id_ = urlparse(address).netloc
+
+    if id_ not in blockchain.nodes:
+        response = {'message': 'address not found bruv'}
+    else:
+        resp = requests.get(f'http://{id_}/chain')
+        __chain = resp.json()['chain']
+        response = {
+            'chain': f'{__chain}'
+        }
+
+    return jsonify(response)
 
 
 @node.route('/chain/resolve', methods=['GET'])

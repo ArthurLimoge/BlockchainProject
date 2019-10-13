@@ -1,5 +1,6 @@
 import hashlib
 import json
+import requests
 from time import time
 from flask import Flask, jsonify, request, session
 # from flask_session import Session
@@ -62,17 +63,17 @@ class Blockchain:
         combined_hash = hashlib.sha256(f'{new_proof}{last_proof}'.encode()).hexdigest()
         return combined_hash[:5] == "00000"
 
-    def valid_chain(self, chain):
-        length = len(chain)
+    def valid_chain(self, __chain):
+        length = len(__chain)
         index = 1
-        last_block = chain[0]
+        last_block = __chain[0]
 
         """
         This function checks that the chain input is valid, via checking the proof-of-works and hashes are valid.
         """
 
         while index < length:
-            block = chain.index
+            block = __chain.index
 
             if block['previous_hash'] != self.hash(last_block):
                 return False
@@ -83,10 +84,31 @@ class Blockchain:
             last_block = block
             index += 1
 
+        return True
+
+    def resolve_conflicts(self):
+        neighbours = self.nodes
+        new_chain = None
+        local_length = len(self.chain)
+
+        for neighbour in neighbours:
+            response = requests.get(f'http://{neighbour}/chain')
+            if 1 == 1:
+                length = response.json()['length']
+                __chain = response.json()['chain']
+
+                if length > local_length and self.valid_chain(__chain):
+                    new_chain = __chain
+                    local_length = length
+
+        if new_chain:
+            self.chain = new_chain
             return True
 
-    def register_node(self, id_):
-        new_node = Node(id_)
+        return False
+
+    def register_node(self, address):
+        new_node = Node(address)
         node_netloc = new_node.return_id
         self.p_nodes.add(new_node)  # private tuple to be used in the program
         self.nodes.add(node_netloc)  # public tuple listing all the nodes' IDs
@@ -95,8 +117,8 @@ class Blockchain:
 
 class Node:
 
-    def __init__(self, id_):
-        self.id_ = urlparse(id_).netloc
+    def __init__(self, address):
+        self.id_ = urlparse(address).netloc
         self.wallet = 0
 
     @property
@@ -138,6 +160,18 @@ def chain():
         'chain': blockchain.chain,
         'length': len(blockchain.chain)
     }
+    return jsonify(response), 200
+
+
+@node.route('/chain/resolve', methods=['GET'])
+def consensus():
+    boole = blockchain.resolve_conflicts()
+
+    if boole:
+        response = {'message': 'Local chain was replaced.'}
+    else:
+        response = {'message': 'Local chain was authoritative.'}
+
     return jsonify(response), 200
 
 

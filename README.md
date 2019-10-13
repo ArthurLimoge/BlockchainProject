@@ -31,6 +31,7 @@ Installation and running
 
 ###### `$ python -m pip install pipenv`
 ###### `$ python -m pip install flask`
+###### `$ python -m pip install requests`
 
 ###### You can then proceed to run the blockchain (with as many nodes as they want):
 

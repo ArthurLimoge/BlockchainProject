@@ -11,7 +11,7 @@ Progression bar
 
 ###### :white_check_mark: (Successfully) attempted to register different nodes on the computer, and interact with the blockchain (09/10/2019)
 
-###### :white_circle: Fix the consensus function, which compares all valid chains and selects the longest in the network
+###### :white_circle: Fix the consensus function, which compares all valid chains and selects the longest in the network (13/10/2019)
 
 ###### :white_circle: Make a public list of nodes, so the user doesn't need to register them all manually
 

@@ -73,7 +73,7 @@ class Blockchain:
         """
 
         while index < length:
-            block = __chain.index
+            block = __chain[index]
 
             if block['previous_hash'] != self.hash(last_block):
                 return False

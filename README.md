@@ -13,14 +13,6 @@ Progression bar
 
 ###### :white_check_mark: Fixed the consensus function, which compares all valid chains and selects the longest in the network (13/10/2019)
 
-###### :white_circle: Make a public list of nodes, so the user doesn't need to register them all manually
-
-###### :white_circle: Implement a wallet system
-
-###### :white_circle: Implement an RSA encryption system for transactions
-
-###### :white_circle: Try the blockchain on different computers
-
 
 Installation and running
 ------

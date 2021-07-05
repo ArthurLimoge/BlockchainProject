@@ -2,7 +2,7 @@ Blockchain project
 =====
 
 
-###### This repository contains a blockchain (personal) project I have been working on for the month of october 2019. The original structure is inspired from that written by [Daniel van Flymen](https://github.com/dvf) in his article [Learn blockchains by Building one](https://medium.com/@vanflymen/learn-blockchains-by-building-one-117428612f46)
+###### This repository contains a (personal) project I worked on in September 2019, in order to better understand blockchains. The original structure is inspired by [Daniel van Flymen](https://github.com/dvf) in his article [Learn blockchains by Building one](https://medium.com/@vanflymen/learn-blockchains-by-building-one-117428612f46)
 
 Progression bar
 ------
